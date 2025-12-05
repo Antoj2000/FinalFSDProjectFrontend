@@ -1,7 +1,5 @@
 import classes from './MainNavigation.module.css'
-import Link from 'next/link'
 import HamMenu from "../generic/HamMenu"
-import HamMenuFAB from "../generic/HamMenuFAB"
 import { useContext } from 'react'
 import GlobalContext from "../../pages/store/globalContext"
 import HamMenuContent from "./HamMenuContent"
@@ -24,17 +22,6 @@ function MainNavigation() {
     <header className={classes.header}>
       <HamMenuContent contents={contents} />
       <HamMenu toggleMenuHide={() => toggleMenuHide()} />
-      <HamMenuFAB toggleMenuHide={() => toggleMenuHide()} />
-      <nav>
-        <ul>
-          <li>
-            <Link href='/'>All Meetups</Link> ({globalCtx.theGlobalObject.meetings.length})
-          </li>
-          <li>
-            <Link href='/new-meetup'>Add New Meetup</Link>
-          </li>
-        </ul>
-      </nav>
     </header>
   );
 }

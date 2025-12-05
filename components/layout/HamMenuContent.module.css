@@ -1,34 +1,106 @@
+
 .background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 50;
-    background-color: rgba(182, 176, 169, 0.5);
-    width: 100%;
-    height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.65); /* darker fade and needed for opacity*/
 }
 
 .mainContent {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    width: 75%;
-    max-width: 275px;
-    height: 100%;
-    background-color: white;
-    overflow-y: scroll;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-  }
-  .mainContent::-webkit-scrollbar {
-    display: none;
-  }
-
-.menuItem {
-    color: black;
-    padding: 10px;
-    border: 1px solid gray;
-    font-size: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 260px;           
+  height: 100%;
+  background-color: white;
+  border-right: 2px solid black;
+  border-radius: 0 16px 16px 0;
+  overflow-y: scroll; /*hide scrollbars but allow scrolling*/
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.mainContent::-webkit-scrollbar {
+  display: none;
 }
 
+/* Slide-in animation */
+.mainContent {
+  transform: translateX(-100%); /* start off-screen */
+  animation: slideIn 0.25s ease-out forwards;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+
+.menuItemTop {
+  padding: 12px;
+  font-size: 22px;
+  font-weight: bold;
+  color: black;
+  border: 1px solid black;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+
+.menuItemGroup {
+  padding: 12px;
+  font-size: 22px;
+  font-weight: bold;
+  color: black;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+.arrowOpen {
+  transform: rotate(90deg); 
+}
+
+.menuItem {
+  padding: 12px;
+  font-size: 20px;
+  color: black;
+  border: 1px solid black;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.subItem {
+  padding-left: 24px;
+}
+
+.menuItemTop:hover{
+  transform: translateX(10px);
+  background-color: #fff;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.25);
+}
+.menuItemGroup:hover{
+  transform: translateX(10px);
+  background-color: #fff;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.25);
+}
+.menuItem:hover {
+  transform: translateX(10px);
+  background-color: #fff;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.allItem {
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+}
