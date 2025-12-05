@@ -16,6 +16,8 @@ function MainNavigation() {
   }
 
   const contents = []
+  contents.push({ title: `All Meetups (${globalCtx.theGlobalObject.meetings.length})`, webAddress: '/'});
+
   globalCtx.theGlobalObject.meetings.forEach(element => {
     contents.push({title: element.title, webAddress: '/' + element.meetingId })
   });

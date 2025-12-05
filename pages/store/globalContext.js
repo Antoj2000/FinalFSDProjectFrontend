@@ -24,7 +24,12 @@ export function GlobalContextProvider(props) {
             }
         });
         let data = await response.json();
-        setGlobals((previousGlobals) => { const newGlobals = JSON.parse(JSON.stringify(previousGlobals)); newGlobals.meetings = data.meetings; newGlobals.dataLoaded = true; return newGlobals })
+        setGlobals((previousGlobals) => {
+            const newGlobals = JSON.parse(JSON.stringify(previousGlobals));
+            newGlobals.meetings = data.meetings;
+            newGlobals.dataLoaded = true;
+            return newGlobals;
+        })
     }
 
     async function editGlobalData(command) { // {cmd: someCommand, newVal: 'new text'}
@@ -37,6 +42,7 @@ export function GlobalContextProvider(props) {
                 newGlobals.hideHamMenu = command.newVal; return newGlobals
             })
         }
+
         if (command.cmd == 'addMeeting') {
             const response = await fetch('/api/new-meetup', {
                 method: 'POST',
@@ -47,9 +53,53 @@ export function GlobalContextProvider(props) {
             });
             const data = await response.json(); // Should check here that it worked OK
             setGlobals((previousGlobals) => {
-                const newGlobals = JSON.parse(JSON.stringify(previousGlobals))
-                newGlobals.meetings.push(command.newVal); return newGlobals
+                const newGlobals = JSON.parse(JSON.stringify(previousGlobals));
+                newGlobals.meetings.push(command.newVal);
+                return newGlobals;
             })
+        }
+
+        // NEW: UPDATE EXISTING MEETING
+        if (command.cmd == 'updateMeeting') {
+            const response = await fetch('/api/update-meeting', {
+                method: 'POST',
+                body: JSON.stringify(command.newVal), // must include _id
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const data = await response.json(); // { response: 'success' } ideally
+
+            setGlobals((previousGlobals) => {
+                const newGlobals = JSON.parse(JSON.stringify(previousGlobals));
+                const index = newGlobals.meetings.findIndex(
+                    (m) => m._id === command.newVal._id
+                );
+                if (index !== -1) {
+                    newGlobals.meetings[index] = command.newVal;
+                }
+                return newGlobals;
+            });
+        }
+
+        // NEW: DELETE MEETING
+        if (command.cmd == 'deleteMeeting') {
+            const response = await fetch('/api/delete-meeting', {
+                method: 'POST',
+                body: JSON.stringify({ _id: command.newVal._id }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const data = await response.json(); // { response: 'success' } ideally
+
+            setGlobals((previousGlobals) => {
+                const newGlobals = JSON.parse(JSON.stringify(previousGlobals));
+                newGlobals.meetings = newGlobals.meetings.filter(
+                    (m) => m._id !== command.newVal._id
+                );
+                return newGlobals;
+            });
         }
     }
 
@@ -62,6 +112,5 @@ export function GlobalContextProvider(props) {
         {props.children}
     </GlobalContext.Provider>
 }
-
 
 export default GlobalContext
