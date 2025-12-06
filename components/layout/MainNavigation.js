@@ -1,7 +1,7 @@
 import classes from "./MainNavigation.module.css";
 import Link from "next/link";
 import HamMenu from "../generic/HamMenu";
-import HamMenuFAB from "../generic/HamMenuFAB";
+//import HamMenuFAB from "../generic/HamMenuFAB";
 import { useContext } from "react";
 import GlobalContext from "../../pages/store/globalContext";
 import HamMenuContent from "./HamMenuContent";
@@ -27,7 +27,7 @@ function MainNavigation() {
     <header className={classes.header}>
       <HamMenuContent contents={contents} />
       <HamMenu toggleMenuHide={() => toggleMenuHide()} />
-      <HamMenuFAB toggleMenuHide={() => toggleMenuHide()} />
+      {/* <HamMenuFAB toggleMenuHide={() => toggleMenuHide()} /> */}
       <Link href="/">
         <div className={classes.logo}>S&A Meetups</div>
       </Link>

@@ -5,7 +5,7 @@ import Dashboard from '../components/new/Dashboard';
 
 function HomePage() {
   const globalCtx = useContext(GlobalContext);
-  const [selectedMeetup, setSelectedMeetup] = useState(null);
+  //const [selectedMeetup, setSelectedMeetup] = useState(null);
 
     if (globalCtx.theGlobalObject.dataLoaded == true) {
         return <Dashboard />
