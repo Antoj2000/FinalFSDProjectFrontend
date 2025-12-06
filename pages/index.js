@@ -1,59 +1,16 @@
-import { useContext, useState } from 'react';
-import MeetupList from '../components/meetups/MeetupList';
-import MeetupDetail from '../components/meetups/MeetupDetail';
-import GlobalContext from './store/globalContext';
-import classes from '../styles/HomePage.module.css';
+import MeetupList from '../components/meetups/MeetupList'
+import { useContext } from "react";
+import GlobalContext from "./store/globalContext"
+import Dashboard from '../components/new/Dashboard';
 
 function HomePage() {
   const globalCtx = useContext(GlobalContext);
   const [selectedMeetup, setSelectedMeetup] = useState(null);
 
-  if (!globalCtx.theGlobalObject.dataLoaded) {
-    return <div className={classes.loading}>Loading data from database, please wait . . .</div>;
-  }
-
-  const meetups = globalCtx.theGlobalObject.meetings;
-
-  function closeDetail(){setSelectedMeetup(null);}
-
-  return (
-    <div className={classes.dashboard}>
-
-      <section className={classes.hero}>
-        <h1>Welcome back!</h1>
-        <p>You currently have <strong>{meetups.length}</strong> meetup{meetups.length !== 1 ? 's' : ''}.</p>
-        <p>Use the menu to add a new meetup or jump into an existing one.</p>
-      </section>
-
-        <section className={classes.section}>
-          <h2>Your Meetups</h2>
-          <MeetupList meetups={meetups} onSelect={setSelectedMeetup}/>
-        </section>
-
-        {selectedMeetup && (
-          <div className={classes.detailOverlay} onClick={closeDetail}>
-          <div className={classes.detailInner} onClick={(e) => e.stopPropagation()}>
-            <MeetupDetail
-              id={selectedMeetup._id}
-              image={selectedMeetup.image}
-              title={selectedMeetup.title}
-              address={selectedMeetup.address}
-              description={selectedMeetup.description}
-              />
-
-            <button
-              className={classes.backButton}
-              type="button"
-              onClick={closeDetail}
-              >
-                Back to all meetups
-              </button>
-          </div>
-          </div>
-        )}
-    </div>
-
-  );
+    if (globalCtx.theGlobalObject.dataLoaded == true) {
+        return <Dashboard />
+    }
+    return <div>Loading data from database, please wait . . . </div>
 }
 
 export default HomePage;
