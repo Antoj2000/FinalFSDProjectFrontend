@@ -11,6 +11,8 @@ function MeetupList(props) {
           image={meetup.image}
           title={meetup.title}
           address={meetup.address}
+          //when it's clicked tell the parent which meetup it is
+          onOpen={() => props.onSelect && props.onSelect(meetup)}
         />
       ))}
     </ul>

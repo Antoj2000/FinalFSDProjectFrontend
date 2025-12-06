@@ -1,5 +1,7 @@
 .main {
-  margin: 3rem auto;
-  width: 90%;
-  max-width: 40rem;
+  margin: 0;
+  padding: 80px 40px 40px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
