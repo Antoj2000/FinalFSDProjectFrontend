@@ -1,5 +1,4 @@
 import MainNavigation from "./MainNavigation";
-import Login from "../new/Login";
 import classes from "./Layout.module.css";
 
 function Layout(props) {
@@ -7,7 +6,6 @@ function Layout(props) {
     <div>
       <MainNavigation />
       <main className={classes.main}>{props.children}</main>
-      
     </div>
   );
 }

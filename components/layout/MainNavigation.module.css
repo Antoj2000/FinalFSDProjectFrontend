@@ -13,6 +13,7 @@
   font-size: 2rem;
   color: white;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .header ul {
@@ -36,5 +37,10 @@
 .header a:hover,
 .header a:active,
 .header a.active {
+  background: linear-gradient(90deg, #2c7249, #0f7a16);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   color: white;
+  text-shadow: 0 0 18px rgba(17, 103, 26, 0.8);
 }

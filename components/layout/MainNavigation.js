@@ -1,23 +1,26 @@
-import classes from './MainNavigation.module.css'
-import Link from 'next/link'
-import HamMenu from "../generic/HamMenu"
-import HamMenuFAB from "../generic/HamMenuFAB"
-import { useContext } from 'react'
-import GlobalContext from "../../pages/store/globalContext"
-import HamMenuContent from "./HamMenuContent"
-import { useRouter } from 'next/router'
+import classes from "./MainNavigation.module.css";
+import Link from "next/link";
+import HamMenu from "../generic/HamMenu";
+import HamMenuFAB from "../generic/HamMenuFAB";
+import { useContext } from "react";
+import GlobalContext from "../../pages/store/globalContext";
+import HamMenuContent from "./HamMenuContent";
+import { useRouter } from "next/router";
 
 function MainNavigation() {
-  const globalCtx = useContext(GlobalContext)
-  const router = useRouter()
+  const globalCtx = useContext(GlobalContext);
+  const router = useRouter();
 
   function toggleMenuHide() {
-    globalCtx.updateGlobals({ cmd: 'hideHamMenu', newVal: false })
+    globalCtx.updateGlobals({ cmd: "hideHamMenu", newVal: false });
   }
 
-  const contents = []
-  globalCtx.theGlobalObject.meetings.forEach(element => {
-    contents.push({title: element.title, webAddress: '/' + element.meetingId })
+  const contents = [];
+  globalCtx.theGlobalObject.meetings.forEach((element) => {
+    contents.push({
+      title: element.title,
+      webAddress: "/" + element.meetingId,
+    });
   });
 
   return (
@@ -25,13 +28,23 @@ function MainNavigation() {
       <HamMenuContent contents={contents} />
       <HamMenu toggleMenuHide={() => toggleMenuHide()} />
       <HamMenuFAB toggleMenuHide={() => toggleMenuHide()} />
+      <Link href="/">
+        <div className={classes.logo}>S&A Meetups</div>
+      </Link>
       <nav>
         <ul>
           <li>
-            <Link href='/'>All Meetups</Link> ({globalCtx.theGlobalObject.meetings.length})
+            <Link href="/meetups">All Meetups</Link> (
+            {globalCtx.theGlobalObject.meetings.length})
           </li>
           <li>
-            <Link href='/new-meetup'>Add New Meetup</Link>
+            <Link href="/new-meetup">Add New Meetup</Link>
+          </li>
+          <li>
+            <Link href="/favourites">Favorites</Link>
+          </li>
+          <li>
+            <Link href="/login">Login</Link>
           </li>
         </ul>
       </nav>
@@ -39,4 +52,4 @@ function MainNavigation() {
   );
 }
 
-export default MainNavigation
+export default MainNavigation;

@@ -7,7 +7,7 @@ const Label = styled.label`
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: ${({ $invalid }) => ($invalid ? "#f87171" : "#6b7280")};
+  color: ${({ $invalid }) => ($invalid ? "#f87171" : "white")};
 `;
 
 const Input = styled.input`
