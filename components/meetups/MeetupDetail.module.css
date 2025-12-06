@@ -1,7 +1,93 @@
 .detail {
-    text-align: center;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .detail img {
-    width: 100%;
+  width: 100%;
+  height: auto;
+  max-height: 350px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.titleRow h1 {
+  margin: 0;
+}
+
+.gearWrapper {
+  position: relative;
+}
+
+.gearButton {
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.gearButton:hover {
+  transform: scale(1.1);
+}
+
+.dropdown {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  min-width: 120px;
+  z-index: 10;
+}
+
+.dropdownItem{
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  background: #ffffff;
+  text-align: left;
+  font-size: 14px;
+  cursor: pointer; 
+}
+.dropdownItemDanger {
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  background: #ffffff;
+  text-align: left;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background-color: #f3f3f3;
+}
+
+.dropdownItemDanger {
+  color: #b00020;
+}
+
+.dropdownItemDanger:hover {
+  background-color: #ffe6ea;
+}
+
+.detail address {
+  font-style: normal;
+  margin-bottom: 8px;
+  display: block;
 }
