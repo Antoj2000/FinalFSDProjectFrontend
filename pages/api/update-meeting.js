@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const response = await fetch("http://localhost:8000/createMeeting", {
+    const response = await fetch("http://localhost:8000/updateMeeting", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(req.body),
@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     const data = await response.json(); // { response: "success" | "fail" }
     res.status(200).json(data);
   } catch (err) {
-    console.error("Error in /api/new-meetup:", err);
+    console.error("Error in /api/update-meeting:", err);
     res.status(500).json({ response: "fail" });
   }
 }
