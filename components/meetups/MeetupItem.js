@@ -1,13 +1,21 @@
 import Card from '../ui/Card';
 import classes from './MeetupItem.module.css';
 
-
 function MeetupItem(props) {
-  function handleClick(){
-    if (props.onOpen){
-      props.onOpen();
+  function handleClick() {
+    if (props.onSelect) {
+      props.onSelect();
     }
   }
+
+  function handleFavouriteClick(event) {
+    event.stopPropagation();
+    if (props.onToggleFavourite) {
+      props.onToggleFavourite();
+    }
+  }
+
+  const starSymbol = props.isFavourite ? '★' : '☆';
 
   return (
     <li className={classes.item} onClick={handleClick}>
@@ -16,7 +24,12 @@ function MeetupItem(props) {
           <img src={props.image} alt={props.title} />
         </div>
         <div className={classes.content}>
-          <h3>{props.title}</h3>
+          <div className={classes.headerRow}>
+            <h3>{props.title}</h3>
+            <button type="button" className={`${classes.favButton} ${props.isFavourite ? classes.favButtonActive : ''}`}
+              onClick={handleFavouriteClick} aria-label={props.isFavourite ? 'Remove from favourites' : 'Add to favourites'}>
+              {starSymbol}</button>
+          </div>
           <address>{props.address}</address>
         </div>
       </Card>

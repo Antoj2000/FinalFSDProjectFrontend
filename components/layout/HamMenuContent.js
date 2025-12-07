@@ -17,9 +17,26 @@ export default function HamMenuContent(props) {
 
   function closeMe() {globalCtx.updateGlobals({ cmd: 'hideHamMenu', newVal: true })}
 
+  const isDark = globalCtx.theGlobalObject.theme === 'dark';
+
+  function toggleTheme() {globalCtx.updateGlobals({ cmd: 'toggleTheme'});}
+
   function toggleMeetups() {setMeetupsOpen(prev => !prev)}
 
   const contentJsx = []
+
+  contentJsx.push(
+    <div className={classes.themeRow} key="theme-toggle">
+      <span className={classes.themeLabel}>Light</span>
+      <label className={classes.switch}>
+        <input type="checkbox" checked={isDark} onChange={toggleTheme}/>
+        <span className={classes.slider}>
+          <span className={classes.icon}>{isDark ? '🌙' : '☀️'}</span>
+        </span>
+      </label>
+      <span className={classes.themeLabel}>Dark</span>
+    </div>
+  );
 
   contentJsx.push(<div className={classes.menuItemTop} key="add-new" onClick={() => clicked('/new-meetup')}>
       Add new meetup

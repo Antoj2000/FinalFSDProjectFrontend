@@ -1,9 +1,18 @@
 .detail {
-  text-align: center;
   max-width: 900px;
-  margin: 0 auto;
+  margin: 2rem auto;
+  padding: 1.5rem;
+
+  /* THEME: card background + text */
+  background-color: var(--card-bg, #ffffff);
+  color: var(--card-text, #111111);
+
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  text-align: center;
 }
 
+/* image at the top of the card */
 .detail img {
   width: 100%;
   height: auto;
@@ -13,19 +22,22 @@
   display: block;
 }
 
+/* title row with gear */
 .titleRow {
+  margin-top: 1.25rem;
+  margin-bottom: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin-top: 16px;
-  margin-bottom: 8px;
-  position: relative;
+  gap: 0.5rem;
 }
 
 .titleRow h1 {
   margin: 0;
+  font-size: 2rem;
 }
+
+/* gear + dropdown */
 
 .gearWrapper {
   position: relative;
@@ -34,50 +46,55 @@
 .gearButton {
   border: none;
   background: transparent;
-  font-size: 22px;
   cursor: pointer;
-  padding: 0 4px;
+  font-size: 1.3rem;
+  line-height: 1;
+  padding: 4px 6px;
+
+  /* THEME */
+  color: var(--card-text, #111111);
 }
 
 .gearButton:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
+/* dropdown menu */
 .dropdown {
   position: absolute;
-  top: 120%;
+  top: 140%;
   right: 0;
-  background-color: #ffffff;
+  min-width: 140px;
+
+  /* THEME */
+  background-color: var(--card-bg, #ffffff);
+  color: var(--card-text, #111111);
+
   border-radius: 6px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
   overflow: hidden;
-  min-width: 120px;
   z-index: 10;
 }
 
-.dropdownItem{
-  width: 100%;
-  padding: 8px 12px;
-  border: none;
-  background: #ffffff;
-  text-align: left;
-  font-size: 14px;
-  cursor: pointer; 
-}
+.dropdownItem,
 .dropdownItemDanger {
   width: 100%;
+  text-align: left;
   padding: 8px 12px;
   border: none;
-  background: #ffffff;
-  text-align: left;
-  font-size: 14px;
+  background: transparent;
   cursor: pointer;
+  font: inherit;
+
+  /* THEME */
+  color: var(--card-text, #111111);
 }
 
 .dropdownItem:hover {
-  background-color: #f3f3f3;
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
+/* delete option */
 .dropdownItemDanger {
   color: #b00020;
 }
@@ -86,8 +103,22 @@
   background-color: #ffe6ea;
 }
 
+/* address + description */
+
 .detail address {
   font-style: normal;
-  margin-bottom: 8px;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
   display: block;
+
+  /* THEME */
+  color: var(--card-text, #cccccc);
+}
+
+.detail p {
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+
+  /* THEME */
+  color: var(--card-text, #dddddd);
 }
