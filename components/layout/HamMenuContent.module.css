@@ -6,15 +6,30 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.65); /* darker fade and needed for opacity*/
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
+.background.closing {
+  animation: fadeOut 0.25s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
 }
 
 .mainContent {
-  width: 260px;
+  width: 270px;
   height: 100%;
   background: white;                        /* default light */
 
   /* THEME */
-  background: var(--menu-bg, white);
+  background: var(--menu-bg, rgb(238, 237, 237));
   color: var(--menu-text, #111);
 
   border-right: 1px solid #ddd;
@@ -27,6 +42,10 @@
   overflow-y: auto;
 }
 
+.mainContent.closing {
+  animation: slideOut 0.25s ease-in forwards;
+}
+
 .mainContent::-webkit-scrollbar {
   display: none;
 }
@@ -36,7 +55,13 @@
   to   { transform: translateX(0); }
 }
 
+@keyframes slideOut {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100); }
+}
+
 .menuItemTop {
+  margin: 2px;
   padding: 12px;
   font-size: 22px;
   font-weight: bold;
@@ -45,12 +70,14 @@
   color: var(--menu-text, #111);
   background-color: var(--menu-bg, white);
 
-  border: 1px solid black;
+  border-bottom: 1px solid black;
+  border-radius: 2rem;
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .menuItemGroup {
+  margin: 2px;
   padding: 12px;
   font-size: 22px;
   font-weight: bold;
@@ -59,7 +86,9 @@
   color: var(--menu-text, #111);
   background-color: var(--menu-bg, white);
 
-  border: 1px solid black;
+  border-bottom: 1px solid black;
+  border-radius: 2rem;
+  
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -76,6 +105,7 @@
 }
 
 .menuItem {
+  margin: 5px;
   padding: 12px;
   font-size: 20px;
 
@@ -83,7 +113,8 @@
   color: var(--menu-text, #111);
   background-color: var(--menu-bg, white);
 
-  border: 1px solid black;
+  border-bottom: 1px solid black;
+  border-radius: 1rem;
   cursor: pointer;
   transition: transform 0.15s ease,
               box-shadow 0.15s ease,
@@ -107,7 +138,7 @@
 }
 
 .allItem {
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   font-weight: bold;
   text-align: center;
 }
@@ -121,7 +152,7 @@
   gap: 0.75rem;
 
   /* THEME */
-  background-color: var(--menu-bg, white);
+  background-color: var(--menu-bg, rgb(237, 237, 237));
   color: var(--menu-text, #111);
 }
 

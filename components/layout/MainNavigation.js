@@ -43,9 +43,6 @@ function MainNavigation() {
           <li>
             <Link href="/favourites">Favorites</Link>
           </li>
-          <li>
-            <Link href="/login">Login</Link>
-          </li>
         </ul>
       </nav>
     </header>
