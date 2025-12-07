@@ -34,7 +34,7 @@ export default function HamMenuContent(props) {
   )
   if (meetupsOpen) {
 
-    contentJsx.push(<div className={`${classes.menuItem} ${classes.subItem} ${classes.allItem}`} key="all-meetups" onClick={() => clicked('/')}>
+    contentJsx.push(<div className={`${classes.menuItem} ${classes.subItem} ${classes.allItem}`} key="all-meetups" onClick={() => clicked('/meetups')}>
         ALL MEETUPS
     </div>
     );

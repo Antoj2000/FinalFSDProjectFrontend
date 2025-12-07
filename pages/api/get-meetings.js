@@ -1,16 +1,19 @@
-// /api/new-meetup
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ message: "Method not allowed" });
+  }
 
-async function handler(req, res) { // can be called anything you like
-  const response = await fetch('http://localhost:8000/readMeeting', {
-    method: 'POST',
-    body: JSON.stringify({ cmd: 'all' }),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-  const data = await response.json();
-  console.log(JSON.stringify(data))
-  res.json(data)
+  try {
+    const response = await fetch("http://localhost:8000/readMeeting", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ cmd: "all" }),
+    });
+
+    const data = await response.json();
+    res.status(200).json(data); // { meetings: [...] }
+  } catch (err) {
+    console.error("Error in /api/get-meetings:", err);
+    res.status(500).json({ meetings: [] });
+  }
 }
-
-export default handler;
