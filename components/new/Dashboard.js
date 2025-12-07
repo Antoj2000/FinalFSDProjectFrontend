@@ -15,7 +15,7 @@ export default function Dashboard() {
             <p>Explore & share meetups from all over the world.</p>
           </div>
           <div className={classes.cta}>
-            <Link href="/login">Join the community</Link>
+            <Link href="/new-meetup">Share Your Meetups</Link>
             <Link href="/meetups">Explore Meetups</Link>
           </div>
         </div>
