@@ -1,19 +1,22 @@
 import Link from "next/link";
+import Slideshow from "./slideshow/Slideshow";
 import classes from "./Dashboard.module.css";
 
 export default function Dashboard() {
   return (
     <>
       <header className={classes.header}>
-        <div className={classes.slideshow}></div>
+        <div className={classes.slideshow}>
+          <Slideshow />
+        </div>
         <div>
           <div className={classes.hero}>
             <h1>Find Meetup Spots for Scenic Meetups</h1>
             <p>Explore & share meetups from all over the world.</p>
           </div>
           <div className={classes.cta}>
-            <Link href="/community">Join the community</Link>
-            <Link href="/meals">Explore Meetups</Link>
+            <Link href="/login">Join the community</Link>
+            <Link href="/meetups">Explore Meetups</Link>
           </div>
         </div>
       </header>
