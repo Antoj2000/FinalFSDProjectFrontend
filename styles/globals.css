@@ -1,24 +1,59 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans:wght@400;700&display=swap');
+/* ============================
+   GLOBAL BASE STYLING
+   ============================ */
 
 * {
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Open Sans', 'Lato', sans-serif;
+/* Root element (html) */
+html {
   margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;   /* light mode base */
 }
 
+/* THEME — Dark for root */
+html.dark {
+  background-color: #181818;   /* dark grey, not black */
+}
+
+/* Body */
+body {
+  margin: 0;
+  font-family: sans-serif;
+
+  /* THEME — Light Mode */
+  background-color: #f5f5f5;
+  color: #111111;
+
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* THEME — Dark Mode */
+body.dark {
+  background-color: #181818;  /* dark grey, not black */
+  color: #f5f5f5;
+}
+
+/* Next.js app root */
+#__next {
+  min-height: 100vh;
+  background-color: transparent; /* let html/body show through */
+}
+
+/* HEADINGS */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: 'Lato', sans-serif;
+  font-family: sans-serif;
 }
 
-#login-inputs{
+/* LOGIN PAGE BLOCK (YOUR ORIGINAL CODE) */
+#login-inputs {
   width: 100%;
   max-width: 28rem;
   padding: 2rem;
@@ -27,5 +62,3 @@ h6 {
   background: linear-gradient(90deg, #2c7249, #0f7a16);
   color: white;
 }
-
-

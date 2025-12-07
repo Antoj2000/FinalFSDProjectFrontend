@@ -16,10 +16,18 @@ function listMeetups() {
     );
   }
 
-  const meetups = globalCtx.theGlobalObject.meetings;
+  const meetups = globalCtx.theGlobalObject.meetings || [];
+  const favourites = globalCtx.theGlobalObject.favourites || [];
 
   function closeDetail() {
     setSelectedMeetup(null);
+  }
+
+  function toggleFavourite(meetup) {
+    globalCtx.updateGlobals({
+      cmd: "toggleFavourite",
+      meetupId: meetup._id,
+    });
   }
 
   return (
@@ -35,7 +43,12 @@ function listMeetups() {
 
       <section className={classes.section}>
         <h2>Your Meetups</h2>
-        <MeetupList meetups={meetups} onSelect={setSelectedMeetup} />
+        <MeetupList
+          meetups={meetups}
+          onSelect={setSelectedMeetup}
+          favourites={favourites}
+          onToggleFavourite={toggleFavourite}
+        />
       </section>
 
       {selectedMeetup && (
