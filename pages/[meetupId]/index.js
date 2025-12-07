@@ -1,20 +1,44 @@
-import MeetupDetail from '../../components/meetups/MeetupDetail'
-import { useRouter } from 'next/router'
-import GlobalContext from "../../pages/store/globalContext"
-import { useContext } from 'react'
+import MeetupDetail from '../../components/meetups/MeetupDetail';
+import { useRouter } from 'next/router';
+import GlobalContext from '../../pages/store/globalContext';
+import { useContext } from 'react';
 
-export default function () {
-    const globalCtx = useContext(GlobalContext)
-    const router = useRouter();
+export default function MeetupDetailsPage() {
+  const globalCtx = useContext(GlobalContext);
+  const router = useRouter();
 
-    // Back to basics, a simple for loop. Also trim() comes into play as it usually does!
-    let returnVal = null
-    for (let ii = 0; ii < globalCtx.theGlobalObject.meetings.length; ii++) {
-        let temp = globalCtx.theGlobalObject.meetings[ii]
-        if (temp.meetingId.trim() == router.query.meetupId.trim()) {
-            returnVal = <MeetupDetail image={temp.image} title={temp.title} description={temp.description} />
-        }
+  // If data isn't loaded yet or route param missing, don't try render a meetup
+  if (!globalCtx.theGlobalObject.dataLoaded || !router.query.meetupId) {
+    return null; // or <p>Loading...</p>
+  }
+
+  let meeting = null;
+
+  // Simple loop to find the matching meeting by meetingId
+  for (let ii = 0; ii < globalCtx.theGlobalObject.meetings.length; ii++) {
+    const temp = globalCtx.theGlobalObject.meetings[ii];
+
+    if (
+      temp.meetingId &&
+      temp.meetingId.trim() === router.query.meetupId.trim()
+    ) {
+      meeting = temp;
+      break;
     }
-    // In the real world, we'd put the code above in the store context module. 
-    return returnVal
+  }
+
+  // If nothing matches the URL, show a simple message instead of undefined
+  if (!meeting) {
+    return <p>Meetup not found.</p>;
+  }
+
+  return (
+    <MeetupDetail
+      id={meeting._id}
+      image={meeting.image}
+      title={meeting.title}
+      address={meeting.address}
+      description={meeting.description}
+    />
+  );
 }
